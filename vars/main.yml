@@ -7,9 +7,17 @@ ntp_packages:
     - ntp
 
 ntp_services:
+  Archlinux:
+    - ntpd
   Alpine:
     - openntpd
-  default:
+  CentOS:
+    - ntpd
+  Debian:
+    - ntp
+  openSUSE Leap:
+    - ntpd
+  Ubuntu:
     - ntp
 
 ntp_configuration:
