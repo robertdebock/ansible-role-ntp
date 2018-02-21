@@ -14,6 +14,8 @@
     line: "interface listen {{ item.address }}"
   with_items:
     - "{{ ntp_interfaces }}"
+  when:
+    - ntp_interfaces is defined
 
 - name: configure ntp_restrict
   lineinfile:
@@ -21,20 +23,26 @@
     line: "restrict {{ item.address }}"
   with_items:
     - "{{ ntp_restrict }}"
+  when:
+    - ntp_restrict is defined
 
 - name: configure ntp_pool
   lineinfile:
     path: /etc/ntp.conf
-    line: "pool {{ item.address }}"
+    line: "pool {{ item.name }}"
   with_items:
     - "{{ ntp_pool }}"
+  when:
+    - ntp_pool is defined
 
 - name: configure ntp_server
   lineinfile:
     path: /etc/ntp.conf
-    line: "server {{ item.address }}"
+    line: "server {{ item.name }}"
   with_items:
     - "{{ ntp_server }}"
+  when:
+    - ntp_server is defined
 
 - name: start and enable software
   service:
