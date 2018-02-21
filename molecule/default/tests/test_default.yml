@@ -6,10 +6,3 @@ file:
     exists: true
     owner: root
     group: root
-service:
-  ntpd:
-    enabled: true
-    running: true
-process:
-  ntpd:
-    running: true
