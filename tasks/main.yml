@@ -2,12 +2,20 @@
 # tasks file for ntp
 - name: install software
   package:
-    name: ntp
+    name: "{{ item }}"
+  with_items:
+    - "{{ ntp_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
+      | default(ntp_packages[ansible_distribution]
+      | default(ntp_packages['default'] )) }}"
 
 - name: start and enable software
   service:
-    name: ntpd
+    name: "{{ item }}"
     state: started
     enabled: true
   when:
     - ansible_virtualization_type != "docker"
+  with_items:
+    - "{{ ntp_services[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
+      | default(ntp_services[ansible_distribution]
+      | default(ntp_services['default'] )) }}"
