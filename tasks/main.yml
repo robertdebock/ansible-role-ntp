@@ -1,0 +1,13 @@
+---
+# tasks file for ntp
+- name: install software
+  package:
+    name: ntp
+
+- name: start and enable software
+  service:
+    name: ntpd
+    state: started
+    enabled: true
+  when:
+    - ansible_virtualization_type != "docker"
