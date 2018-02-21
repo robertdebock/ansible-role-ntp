@@ -8,6 +8,34 @@
       | default(ntp_packages[ansible_distribution]
       | default(ntp_packages['default'] )) }}"
 
+- name: configure ntp_interfaces
+  lineinfile:
+    path: /etc/ntp.conf
+    line: "interface listen {{ item.address }}"
+  with_items:
+    - "{{ ntp_interfaces }}"
+
+- name: configure ntp_restrict
+  lineinfile:
+    path: /etc/ntp.conf
+    line: "restrict {{ item.address }}"
+  with_items:
+    - "{{ ntp_restrict }}"
+
+- name: configure ntp_pool
+  lineinfile:
+    path: /etc/ntp.conf
+    line: "pool {{ item.address }}"
+  with_items:
+    - "{{ ntp_pool }}"
+
+- name: configure ntp_server
+  lineinfile:
+    path: /etc/ntp.conf
+    line: "server {{ item.address }}"
+  with_items:
+    - "{{ ntp_server }}"
+
 - name: start and enable software
   service:
     name: "{{ item }}"
