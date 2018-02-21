@@ -11,3 +11,7 @@ ntp_services:
     - openntpd
   default:
     - ntp
+
+ntp_configuration:
+  Alpine: /etc/ntpd.conf
+  default: /etc/ntp.conf
