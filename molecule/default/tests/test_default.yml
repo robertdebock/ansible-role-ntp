@@ -2,7 +2,5 @@
 
 ---
 file:
-  /sbin/ntpd:
+  /etc/hosts:
     exists: true
-    owner: root
-    group: root
