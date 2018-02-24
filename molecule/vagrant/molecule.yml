@@ -10,27 +10,24 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: tomcat-centos-6
+  - name: ntp-centos-6
     box: centos/6
-    memory: 1024
-  - name: tomcat-centos-7
+  - name: ntp-centos-7
     box: centos/7
-    memory: 1024
-  - name: tomcat-debian-buster64
+  - name: ntp-debian-jessie64
+    box: debian/jessie64
+  - name: ntp-debian-buster64
     box: desc/buster64
-    memory: 1024
-  - name: tomcat-fedora-26-cloud-base
+  - name: ntp-fedora-26-cloud-base
     box: fedora/26-cloud-base
-    memory: 1024
-  - name: tomcat-fedora-27-cloud-base
+  - name: ntp-fedora-27-cloud-base
     box: fedora/27-cloud-base
-    memory: 1024
-  - name: tomcat-opensuse-openSUSE-42-2-x86-64
+  - name: ntp-opensuse-openSUSE-42-2-x86-64
     box: opensuse/openSUSE-42.2-x86_64
-    memory: 1024
-  - name: tomcat-ubuntu-artful
+  - name: ntp-ubuntu-trusty
+    box: ubuntu/trusty64
+  - name: ntp-ubuntu-artful
     box: ubuntu/artful64
-    memory: 1024
 provisioner:
   name: ansible
   lint:
