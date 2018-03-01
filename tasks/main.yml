@@ -18,6 +18,8 @@
     - "{{ ntp_interfaces }}"
   when:
     - ntp_interfaces is defined
+  notify:
+    - restart ntpd
 
 - name: configure ntp_restrict
   lineinfile:
@@ -29,6 +31,8 @@
     - "{{ ntp_restrict }}"
   when:
     - ntp_restrict is defined
+  notify:
+    - restart ntpd
 
 - name: configure ntp_pool
   lineinfile:
@@ -40,6 +44,8 @@
     - "{{ ntp_pool }}"
   when:
     - ntp_pool is defined
+  notify:
+    - restart ntpd
 
 - name: configure ntp_server
   lineinfile:
@@ -51,6 +57,8 @@
     - "{{ ntp_server }}"
   when:
     - ntp_server is defined
+  notify:
+    - restart ntpd
 
 - name: start and enable software
   service:
