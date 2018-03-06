@@ -8,8 +8,7 @@ Provides ntp for your system.
 Requirements
 ------------
 
-These requirements are explicitly mentioned in meta/main.yml.
-- bootstrap
+A Linux system. ;-)
 
 Role Variables
 --------------
@@ -18,6 +17,8 @@ None known.
 
 Dependencies
 ------------
+
+You can prepare your system using the role:
 
 - robertdebock.bootstrap
 
@@ -33,6 +34,7 @@ Example Playbook
 - hosts: servers
 
   roles:
+    - role: robertdebock.bootstrap
     - role: robertdebock.ntp
 ```
 

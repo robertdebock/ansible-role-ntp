@@ -42,5 +42,4 @@ galaxy_info:
     - Fedora
     - Ubuntu
 
-dependencies:
-  - robertdebock.bootstrap
+dependencies: []
