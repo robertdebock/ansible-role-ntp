@@ -8,33 +8,33 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: tomcat-archlinux
+  - name: ntp-archlinux
     image: base/archlinux
-  - name: tomcat-alpine-3.6
+  - name: ntp-alpine-3.6
     image: alpine:3.6
-  - name: tomcat-alpine-3.7
+  - name: ntp-alpine-3.7
     image: alpine:3.7
-  - name: tomcat-centos-6
+  - name: ntp-centos-6
     image: centos:6
-  - name: tomcat-centos-7
+  - name: ntp-centos-7
     image: centos:7
-  - name: tomcat-debian-stretch
+  - name: ntp-debian-stretch
     image: debian:stretch
-  - name: tomcat-debian-buster
+  - name: ntp-debian-buster
     image: debian:buster
-  - name: tomcat-fedora-26
+  - name: ntp-fedora-26
     image: fedora:26
-  - name: tomcat-fedora-27
+  - name: ntp-fedora-27
     image: fedora:27
-  - name: tomcat-opensuse-42.2
+  - name: ntp-opensuse-42.2
     image: opensuse:42.2
-  - name: tomcat-opensuse-42.3
+  - name: ntp-opensuse-42.3
     image: opensuse:42.3
     # 16.04 LTS
-  - name: tomcat-ubuntu-xenial
+  - name: ntp-ubuntu-xenial
     image: ubuntu:xenial
     # 17.04
-  - name: tomcat-ubuntu-artful
+  - name: ntp-ubuntu-artful
     image: ubuntu:artful
 provisioner:
   name: ansible
