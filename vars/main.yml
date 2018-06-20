@@ -19,6 +19,8 @@ ntp_services:
     - ntpd
   openSUSE Leap:
     - ntpd
+  openSUSE Tumbleweed:
+    - ntpd
   Ubuntu:
     - ntp
 
