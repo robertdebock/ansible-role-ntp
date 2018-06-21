@@ -8,14 +8,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: ntp-fedora-28
-    image: fedora:28
+  - name: ntp-alpine-edge
+    image: alpine:edge
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
 scenario:
-  name: fedora-28
+  name: alpine-edge
 verifier:
   name: goss
   lint:

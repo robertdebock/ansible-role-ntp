@@ -8,14 +8,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: ntp-opensuse-42.3
-    image: opensuse:42.3
+  - name: ntp-opensuse-leap
+    image: opensuse:leap
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
 scenario:
-  name: opensuse-42.3
+  name: opensuse-leap
 verifier:
   name: goss
   lint:
