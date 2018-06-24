@@ -38,6 +38,6 @@ ntp_services:
   Ubuntu:
     - ntp
 
-ntp_configuration:
+ntp_configuration_old:
   Alpine: /etc/ntpd.conf
   default: /etc/ntp.conf
