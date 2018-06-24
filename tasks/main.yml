@@ -4,15 +4,13 @@
   package:
     name: "{{ item }}"
   with_items:
-    - "{{ ntp_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-      | default(ntp_packages[ansible_distribution]
-      | default(ntp_packages['default'] )) }}"
+    - "{{ ntp_configuration[ansible_distribution]['packages']
+      | default(ntp_configuration['default']['packages'] ) }}"
 
 - name: configure ntp_interfaces
   lineinfile:
-    dest: "{{ ntp_configuration[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-      | default(ntp_configuration[ansible_distribution]
-      | default(ntp_configuration['default'] )) }}"
+    dest: "{{ ntp_configuration[ansible_distribution]['file']
+      | default(ntp_configuration['default']['file'] ) }}"
     line: "interface listen {{ item.address }}"
   with_items:
     - "{{ ntp_interfaces }}"
@@ -23,9 +21,8 @@
 
 - name: configure ntp_restrict
   lineinfile:
-    dest: "{{ ntp_configuration[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-      | default(ntp_configuration[ansible_distribution]
-      | default(ntp_configuration['default'] )) }}"
+    dest: "{{ ntp_configuration[ansible_distribution]['file']
+      | default(ntp_configuration['default']['file'] ) }}"
     line: "restrict {{ item.address }}"
   with_items:
     - "{{ ntp_restrict }}"
@@ -36,9 +33,8 @@
 
 - name: configure ntp_pool
   lineinfile:
-    dest: "{{ ntp_configuration[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-      | default(ntp_configuration[ansible_distribution]
-      | default(ntp_configuration['default'] )) }}"
+    dest: "{{ ntp_configuration[ansible_distribution]['file']
+      | default(ntp_configuration['default']['file'] ) }}"
     line: "pool {{ item.name }}"
   with_items:
     - "{{ ntp_pool }}"
@@ -49,9 +45,8 @@
 
 - name: configure ntp_server
   lineinfile:
-    dest: "{{ ntp_configuration[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-      | default(ntp_configuration[ansible_distribution]
-      | default(ntp_configuration['default'] )) }}"
+    dest: "{{ ntp_configuration[ansible_distribution]['file']
+      | default(ntp_configuration['default']['file'] ) }}"
     line: "server {{ item.name }}"
   with_items:
     - "{{ ntp_server }}"
@@ -68,6 +63,5 @@
   when:
     - ansible_virtualization_type != "docker"
   with_items:
-    - "{{ ntp_services[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-      | default(ntp_services[ansible_distribution]
-      | default(ntp_services['default'] )) }}"
+    - "{{ ntp_configuration[ansible_distribution]['service']
+      | default(ntp_configuration['default']['service'] ) }}"

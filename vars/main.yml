@@ -1,5 +1,19 @@
 ---
 # vars file for ntp
+ntp_configuration:
+  Alpine:
+    file: /etc/ntpd.conf
+    packages:
+      - openntpd
+    service: openntpd
+  Debian:
+    service: ntp
+  default:
+    file: /etc/ntp.conf
+    packages:
+      - ntp
+    service: ntpd
+
 ntp_packages:
   Alpine:
     - openntpd
