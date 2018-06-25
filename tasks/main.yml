@@ -1,13 +1,14 @@
 ---
 # tasks file for ntp
-- name: lookup and rename variables
-  set_fact:
-    file: "{{ item.file }}"
-    packages: "{{ item.packages }}"
-    service: "{{ item.service }}"
-  with_items:
-    - "{{ ntp_configuration[ansible_distribution]
-      | default(ntp_configuration['default'] ) }}"
+- name: load default variables
+  include_vars:
+    - default.yml
+
+- name: load os-specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}.yml"
+    - default.yml
 
 - name: install software
   package:
@@ -61,10 +62,8 @@
 
 - name: start and enable software
   service:
-    name: "{{ item }}"
+    name: "{{ service }}"
     state: started
     enabled: true
   when:
     - ansible_virtualization_type != "docker"
-  with_items:
-    - "{{ service }}"

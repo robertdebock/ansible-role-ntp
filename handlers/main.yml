@@ -2,10 +2,7 @@
 # handlers file for ntp
 - name: restart ntpd
   service:
-    name: "{{ item }}"
+    name: "{{ service }}"
     state: restarted
   when:
     - ansible_virtualization_type != "docker"
-  with_items:
-    - "{{ ntp_configuration[ansible_distribution]['service']
-      | default(ntp_configuration['default']['service'] ) }}"

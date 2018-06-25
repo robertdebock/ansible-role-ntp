@@ -1,0 +1,6 @@
+---
+# vars file for ntp
+file: /etc/ntpd.conf
+packages:
+  - openntpd
+service: openntpd
