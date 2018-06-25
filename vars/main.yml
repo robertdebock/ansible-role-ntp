@@ -7,6 +7,9 @@ ntp_configuration:
       - openntpd
     service: openntpd
   Debian:
+    file: /etc/ntp.conf
+    packages:
+      - ntp
     service: ntp
   default:
     file: /etc/ntp.conf
