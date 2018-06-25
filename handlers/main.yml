@@ -7,6 +7,5 @@
   when:
     - ansible_virtualization_type != "docker"
   with_items:
-    - "{{ ntp_services[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-      | default(ntp_services[ansible_distribution]
-      | default(ntp_services['default'] )) }}"
+    - "{{ ntp_configuration[ansible_distribution]['service']
+      | default(ntp_configuration['default']['service'] ) }}"
