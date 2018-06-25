@@ -2,10 +2,10 @@
 # tasks file for ntp
 - name: install software
   package:
-    name: "{{ item }}"
+    name: "{{ item.packages }}"
   with_items:
-    - "{{ ntp_configuration[ansible_distribution]['packages']
-      | default(ntp_configuration['default']['packages'] ) }}"
+    - "{{ ntp_configuration[ansible_distribution]
+      | default(ntp_configuration['default'] ) }}"
 
 - name: configure ntp_interfaces
   lineinfile:
