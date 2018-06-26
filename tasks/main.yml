@@ -2,7 +2,7 @@
 # tasks file for ntp
 - name: load default variables
   include_vars:
-    - default.yml
+    file: default.yml
 
 - name: load os-specific variables
   include_vars: "{{ item }}"
