@@ -40,10 +40,10 @@ galaxy_info:
     - ntp
     - ntpd
     - ntpdate
-    - Alpine
-    - CentOS
-    - Debian
-    - Fedora
-    - Ubuntu
+    - alpine
+    - centos
+    - debian
+    - fedora
+    - ubuntu
 
 dependencies: []
