@@ -20,7 +20,35 @@ A Linux system. ;-)
 Role Variables
 --------------
 
-None known.
+- ntp_interfaces: A list of interfaces to listen on, for example:
+
+```
+ntp_interfaces:
+  - address: 127.0.0.1
+```
+
+- ntp_restrict: A list of IP addresses and options to allow NTP traffic from:
+```
+ntp_restrict:
+  - address: 127.0.0.1
+  - address: ::1
+  - address: 192.168.1.1 nomodify notrap nopeer noquery
+```
+
+- ntp_pool: A list of NTP pools and their options:
+```
+ntp_pool:
+  - name: 2.fedora.pool.ntp.org iburst
+```
+
+- ntp_servers: A list of NTP servers and their options:
+
+```
+ntp_servers:
+  - name: ntp.example.com
+    options:
+      - iburst
+```
 
 Dependencies
 ------------

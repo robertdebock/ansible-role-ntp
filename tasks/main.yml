@@ -54,9 +54,9 @@
     dest: "{{ file }}"
     line: "server {{ item.name }}"
   with_items:
-    - "{{ ntp_server }}"
+    - "{{ ntp_servers }}"
   when:
-    - ntp_server is defined
+    - ntp_servers is defined
   notify:
     - restart ntpd
 
