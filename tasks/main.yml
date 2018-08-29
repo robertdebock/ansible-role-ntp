@@ -63,7 +63,9 @@
 
 - name: install timezone information
   package:
-    name: tzdata
+    name: "{{ item }}"
+  with_items:
+    - "{{ ntp_timzone_packages }}"
 
 - name: configure timezone
   timezone:
