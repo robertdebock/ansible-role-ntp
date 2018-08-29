@@ -4,3 +4,4 @@ file: /etc/ntp.conf
 packages:
   - ntp
 service: ntpd
+ntp_timezone_supported: no
