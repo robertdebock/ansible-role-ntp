@@ -1,4 +1,4 @@
 ---
-  # vars file for ntp
+# vars file for ntp
 ntp_timzone_packages:
   - timezone
