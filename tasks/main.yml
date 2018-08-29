@@ -60,6 +60,10 @@
   notify:
     - restart ntpd
 
+- name: configure timezone
+  timezone:
+    name: "{{ ntp_timezone }}"
+
 - name: start and enable software
   service:
     name: "{{ service }}"

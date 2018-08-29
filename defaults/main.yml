@@ -20,3 +20,5 @@ ntp_pool:
 #   - name: ntp.example.com
 #     options:
 #       - iburst
+
+ntp_timezone: Europe/Amsterdam
