@@ -60,6 +60,10 @@
   notify:
     - restart ntpd
 
+- name: install timezone information
+  package:
+    name: tzdata
+
 - name: configure timezone
   timezone:
     name: "{{ ntp_timezone }}"
