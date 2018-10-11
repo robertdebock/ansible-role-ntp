@@ -16,7 +16,7 @@
   when:
     - ntp_interfaces is defined
   notify:
-    - restart ntpd
+    - restart ntp
 
 - name: configure ntp_restrict
   lineinfile:
@@ -28,7 +28,7 @@
   when:
     - ntp_restrict is defined
   notify:
-    - restart ntpd
+    - restart ntp
 
 - name: configure ntp_pool
   lineinfile:
@@ -40,7 +40,7 @@
   when:
     - ntp_pool is defined
   notify:
-    - restart ntpd
+    - restart ntp
 
 - name: configure ntp_server
   lineinfile:
@@ -52,7 +52,7 @@
   when:
     - ntp_servers is defined
   notify:
-    - restart ntpd
+    - restart ntp
 
 - name: install timezone information
   package:
