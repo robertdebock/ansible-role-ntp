@@ -9,6 +9,7 @@ ntp_packages:
     - ntp
   Alpine:
     - openntpd
+
 ntp_service:
   default: ntpd
   Alpine: openntpd
