@@ -9,7 +9,7 @@
 - name: configure ntp_interfaces
   lineinfile:
     dest: "{{ ntp_configuration[ansible_distribution]
-          | default(ansible_distribution['default']) }}"
+          | default(ntp_configuration['default']) }}"
     line: "interface listen {{ item.address }}"
   with_items:
     - "{{ ntp_interfaces }}"
@@ -21,7 +21,7 @@
 - name: configure ntp_restrict
   lineinfile:
     dest: "{{ ntp_configuration[ansible_distribution]
-          | default(ansible_distribution['default']) }}"
+          | default(ntp_configuration['default']) }}"
     line: "restrict {{ item.address }}"
   with_items:
     - "{{ ntp_restrict }}"
@@ -33,7 +33,7 @@
 - name: configure ntp_pool
   lineinfile:
     dest: "{{ ntp_configuration[ansible_distribution]
-          | default(ansible_distribution['default']) }}"
+          | default(ntp_configuration['default']) }}"
     line: "pool {{ item.name }}"
   with_items:
     - "{{ ntp_pool }}"
@@ -45,7 +45,7 @@
 - name: configure ntp_server
   lineinfile:
     dest: "{{ ntp_configuration[ansible_distribution]
-          | default(ansible_distribution['default']) }}"
+          | default(ntp_configuration['default']) }}"
     line: "server {{ item.name }}"
   with_items:
     - "{{ ntp_servers }}"
