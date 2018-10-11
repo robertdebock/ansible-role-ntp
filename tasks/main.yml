@@ -1,26 +1,15 @@
 ---
 # tasks file for ntp
-- name: load default variables
-  include_vars:
-    file: default.yml
-
-- name: load os-specific variables
-  include_vars: "{{ item }}"
-  with_first_found:
-    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-    - "{{ ansible_distribution }}.yml"
-    - default.yml
-
-- name: install software
+- name: install ntp
   package:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - "{{ packages }}"
+    name: "{{ ntp_packages[ansible_distribution]
+          | default(ntp_packages['default']) }}"
+    state: "{{ ntp_package_state }}"
 
 - name: configure ntp_interfaces
   lineinfile:
-    dest: "{{ file }}"
+    dest: "{{ ntp_configuration[ansible_distribution]
+          | default(ansible_distribution['default']) }}"
     line: "interface listen {{ item.address }}"
   with_items:
     - "{{ ntp_interfaces }}"
@@ -31,7 +20,8 @@
 
 - name: configure ntp_restrict
   lineinfile:
-    dest: "{{ file }}"
+    dest: "{{ ntp_configuration[ansible_distribution]
+          | default(ansible_distribution['default']) }}"
     line: "restrict {{ item.address }}"
   with_items:
     - "{{ ntp_restrict }}"
@@ -42,7 +32,8 @@
 
 - name: configure ntp_pool
   lineinfile:
-    dest: "{{ file }}"
+    dest: "{{ ntp_configuration[ansible_distribution]
+          | default(ansible_distribution['default']) }}"
     line: "pool {{ item.name }}"
   with_items:
     - "{{ ntp_pool }}"
@@ -53,7 +44,8 @@
 
 - name: configure ntp_server
   lineinfile:
-    dest: "{{ file }}"
+    dest: "{{ ntp_configuration[ansible_distribution]
+          | default(ansible_distribution['default']) }}"
     line: "server {{ item.name }}"
   with_items:
     - "{{ ntp_servers }}"
@@ -64,10 +56,9 @@
 
 - name: install timezone information
   package:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - "{{ ntp_timzone_packages }}"
+    name: "{{ ntp_timezone_packages[ansible_distribution]
+          | default(ntp_timezone_packages['default']) }}"
+    state: "{{ ntp_package_state }}"
 
 - name: configure timezone
   timezone:
@@ -75,9 +66,10 @@
   when:
     - ntp_timezone_supported
 
-- name: start and enable software
+- name: start and enable ntp
   service:
-    name: "{{ service }}"
+    name: "{{ ntp_service[ansible_distribution]
+          | default(ntp_service['default']) }}"
     state: started
     enabled: yes
   when:

@@ -1,0 +1,26 @@
+---
+# vars file for ntp
+ntp_configuration:
+  default: /etc/ntp.conf
+  Alpine: /etc/ntpd.conf
+
+ntp_packages:
+  default:
+    - ntp
+  Alpine:
+    - openntpd
+ntp_service:
+  default: ntpd
+  Alpine: openntpd
+
+ntp_timezone_packages:
+  default:
+    - tzdata
+  openSUSE Leap:
+    - timezone
+  openSUSE Tumbleweed:
+    - timezone
+
+ntp_timezone_supported:
+  default: no
+  CentOS-6: yes

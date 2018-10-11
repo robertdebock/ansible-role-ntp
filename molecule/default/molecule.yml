@@ -1,0 +1,50 @@
+---
+dependency:
+  name: galaxy
+  options:
+    role-file: requirements.yml
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: ntp-alpine-edge
+    image: alpine:edge
+    command: sh -c "while true ; do sleep 1 ; done"
+  - name: ntp-alpine-latest
+    image: alpine:latest
+    command: sh -c "while true ; do sleep 1 ; done"
+  - name: ntp-archlinux
+    image: base/archlinux
+  - name: ntp-centos-6
+    image: centos:6
+  - name: ntp-centos-latest
+    image: centos:latest
+  - name: ntp-debian-latest
+    image: debian:latest
+  - name: ntp-debian-stable
+    image: debian:stable
+  - name: ntp-debian-unstable
+    image: debian:unstable
+  - name: ntp-fedora-latest
+    image: fedora:latest
+  - name: ntp-fedora-rawhide
+    image: fedora:rawhide
+  - name: ntp-opensuse-leap
+    image: opensuse:leap
+  - name: ntp-opensuse-tumbleweed
+    image: opensuse:tumbleweed
+  - name: ntp-ubuntu-artful
+    image: ubuntu:artful
+  - name: ntp-ubuntu-devel
+    image: ubuntu:devel
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+scenario:
+  name: default
+verifier:
+  name: goss
+  lint:
+    name: yamllint
