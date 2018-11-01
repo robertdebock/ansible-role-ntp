@@ -3,75 +3,82 @@ ntp
 
 [![Build Status](https://travis-ci.org/robertdebock/ansible-role-ntp.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-ntp)
 
-Provides ntp for your system.
+Installs and configures NTP on your machine.
 
-[Unit tests](https://travis-ci.org/robertdebock/ansible-role-ntp) are done on every commit and periodically.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-ntp/issues)
+Example Playbook
+----------------
 
-To test this role locally please use [Molecule](https://github.com/metacloud/molecule):
+This example is taken from `molecule/default/playbook.yml`:
 ```
-pip install molecule
-molecule test
+---
+- name: Converge
+  hosts: all
+  become: true
+  gather_facts: false
+
+  roles:
+    - robertdebock.bootstrap
+    - robertdebock.ntp
+
 ```
-There are many scenarios available, please have a look in the `molecule/` directory.
+
+Role Variables
+--------------
+
+These variables are set in `defaults/main.yml`:
+```
+---
+# defaults file for ntp
+
+# A list of IP addresses to listen on.
+ntp_interfaces:
+  - address: 127.0.0.1
+
+# A list of IP addresses and options to allow NTP traffic from.
+ntp_restrict:
+  - address: 127.0.0.1
+  - address: ::1
+#  - address: 192.168.1.1 nomodify notrap nopeer noquery
+
+# A list of NTP pools and their options.
+ntp_pool:
+  - name: 2.fedora.pool.ntp.org iburst
+
+# A list of NTP servers and their options.
+# ntp_server:
+#   - name: ntp.example.com
+#     options:
+#       - iburst
+
+# The timezone.
+ntp_timezone: Europe/Amsterdam
+
+# To update all packages installed by this roles, set `ntp_package_state` to `latest`.
+ntp_package_state: present
+
+```
+
+Requirements
+------------
+
+- Access to a repository containing packages, likely on the internet.
+- A recent version of Ansible. (Tests run on the last 3 release of Ansible.)
+
+The following roles can be installed to ensure all requirements are met, using `ansible-galaxy install -r requirements.yml`:
+
+---
+- robertdebock.bootstrap
+
 
 Context
---------
+-------
+
 This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://robertdebock.nl/) for further information.
 
 Here is an overview of related roles:
 ![dependencies](https://raw.githubusercontent.com/robertdebock/drawings/artifacts/ntp.png "Dependency")
 
-Requirements
-------------
-
-A Linux system. ;-)
-
-Role Variables
---------------
-
-- ntp_interfaces: A list of interfaces to listen on, for example:
-
-```
-ntp_interfaces:
-  - address: 127.0.0.1
-```
-
-- ntp_restrict: A list of IP addresses and options to allow NTP traffic from:
-```
-ntp_restrict:
-  - address: 127.0.0.1
-  - address: ::1
-  - address: 192.168.1.1 nomodify notrap nopeer noquery
-```
-
-- ntp_pool: A list of NTP pools and their options:
-```
-ntp_pool:
-  - name: 2.fedora.pool.ntp.org iburst
-```
-
-- ntp_servers: A list of NTP servers and their options:
-
-```
-ntp_servers:
-  - name: ntp.example.com
-    options:
-      - iburst
-```
-
-Dependencies
-------------
-
-You can prepare your system using the role:
-
-- [robertdebock.bootstrap](https://travis-ci.org/robertdebock/ansible-role-bootstrap)
-
-Download the dependencies by issuing this command:
-```
-ansible-galaxy install --role-file requirements.yml
-```
 
 Compatibility
 -------------
@@ -98,23 +105,26 @@ This role has been tested against the following distributions and Ansible versio
 
 A single star means the build may fail, it's marked as an experimental build.
 
-Example Playbook
-----------------
+Testing
+-------
 
+[Unit tests](https://travis-ci.org/robertdebock/ansible-role-ntp) are done on every commit and periodically.
+
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-ntp/issues)
+
+To test this role locally please use [Molecule](https://github.com/metacloud/molecule):
 ```
-- hosts: servers
-
-  roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.ntp
+pip install molecule
+molecule test
 ```
+There are many specific scenarios available, please have a look in the `molecule/` directory.
 
-Install this role using `galaxy install robertdebock.tomcat`.
 
 License
 -------
 
-Apache License, Version 2.0
+Apache-2.0
+
 
 Author Information
 ------------------
