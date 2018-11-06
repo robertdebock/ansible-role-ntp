@@ -3,8 +3,7 @@ ntp
 
 [![Build Status](https://travis-ci.org/robertdebock/ansible-role-ntp.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-ntp)
 
-Installs and configures NTP on your machine.
-
+The purpose of this role is to install and configure ntp on your system.
 
 Example Playbook
 ----------------
