@@ -16,7 +16,9 @@ ntp_configuration: "{{ _ntp_configuration[ansible_distribution] | default(_ntp_c
 
 _ntp_service:
   default: ntpd
+  Debian: ntp
   Alpine: openntpd
+  Ubuntu: ntp
 
 ntp_service: "{{ _ntp_service[ansible_distribution] | default(_ntp_service['default']) }}"
 
