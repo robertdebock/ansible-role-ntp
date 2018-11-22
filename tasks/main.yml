@@ -59,7 +59,7 @@
     name: "{{ ntp_timezone }}"
   when:
     - ntp_timezone_supported
-    - ansible_virtualization_type != "docker"
+    - ansible_virtualization_type != "docker" or ntp_ignore_docker
 
 - name: start and enable ntp
   service:
@@ -67,4 +67,4 @@
     state: started
     enabled: yes
   when:
-    - ansible_virtualization_type != "docker"
+    - ansible_virtualization_type != "docker" or ntp_ignore_docker
