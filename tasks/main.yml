@@ -4,6 +4,9 @@
   package:
     name: "{{ ntp_packages }}"
     state: "{{ ntp_package_state }}"
+  register: ntp_install_ntp
+  until: ntp_install_ntp
+  retries: 3
 
 - name: configure ntp_interfaces
   lineinfile:
@@ -53,6 +56,9 @@
   package:
     name: "{{ ntp_timezone_packages }}"
     state: "{{ ntp_package_state }}"
+  register: ntp_install_timezone_information
+  until: ntp_install_timezone_information
+  retries: 3
 
 - name: configure timezone
   timezone:
