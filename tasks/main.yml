@@ -1,5 +1,10 @@
 ---
 # tasks file for ntp
+- name: remove conflicting packages
+  package:
+    name: "{{ ntp_conflicting_packages }}"
+    state: absent
+
 - name: install ntp
   package:
     name: "{{ ntp_packages }}"
