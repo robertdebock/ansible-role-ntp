@@ -8,11 +8,8 @@ _ntp_packages:
 
 ntp_packages: "{{ _ntp_packages[ansible_distribution] | default(_ntp_packages['default']) }}"
 
-_ntp_conflicting_packages:
-  CentOS:
-    - chrony
-
-ntp_conflicting_packages: "{{ _ntp_conflicting_packages[ansible_distribution] }}"
+ntp_conflicting_packages:
+  - chrony
 
 _ntp_configuration:
   default: /etc/ntp.conf
