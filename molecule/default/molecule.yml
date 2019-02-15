@@ -34,8 +34,10 @@ platforms:
     image: opensuse:leap
   - name: ntp-opensuse-tumbleweed
     image: opensuse:tumbleweed
-  - name: ntp-ubuntu-artful
-    image: ubuntu:artful
+  - name: ntp-ubuntu-latest
+    image: ubuntu:latest
+  - name: ntp-ubuntu-rolling
+    image: ubuntu:rolling
   - name: ntp-ubuntu-devel
     image: ubuntu:devel
   - name: ntp-ubuntu-latest
