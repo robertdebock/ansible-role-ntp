@@ -30,8 +30,6 @@ _ntp_timezone_packages:
     - tzdata
   openSUSE Leap:
     - timezone
-  openSUSE Tumbleweed:
-    - timezone
 
 ntp_timezone_packages: "{{ _ntp_timezone_packages[ansible_distribution] | default(_ntp_timezone_packages['default']) }}"
 
