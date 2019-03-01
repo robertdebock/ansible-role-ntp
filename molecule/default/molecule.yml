@@ -32,8 +32,6 @@ platforms:
     image: fedora:rawhide
   - name: ntp-opensuse-leap
     image: opensuse:leap
-  - name: ntp-opensuse-tumbleweed
-    image: opensuse:tumbleweed
   - name: ntp-ubuntu-latest
     image: ubuntu:latest
   - name: ntp-ubuntu-rolling
