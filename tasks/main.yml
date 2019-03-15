@@ -8,7 +8,7 @@
 - name: install ntp
   package:
     name: "{{ ntp_packages }}"
-    state: "{{ ntp_package_state }}"
+    state: present
   register: ntp_install_ntp
   until: ntp_install_ntp
   retries: 3
@@ -68,7 +68,7 @@
 - name: install timezone information
   package:
     name: "{{ ntp_timezone_packages }}"
-    state: "{{ ntp_package_state }}"
+    state: present
   register: ntp_install_timezone_information
   until: ntp_install_timezone_information
   retries: 3
@@ -78,7 +78,7 @@
     name: "{{ ntp_timezone }}"
   when:
     - ntp_timezone_supported
-    - ansible_virtualization_type != "docker" or ntp_ignore_docker
+    - ansible_virtualization_type != "docker"
 
 - name: start and enable ntp
   service:
@@ -86,4 +86,4 @@
     state: started
     enabled: yes
   when:
-    - ansible_virtualization_type != "docker" or ntp_ignore_docker
+    - ansible_virtualization_type != "docker"
