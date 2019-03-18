@@ -10,38 +10,56 @@ driver:
 platforms:
   - name: ntp-alpine-edge
     image: alpine:edge
+    pre_build_image: yes
     command: sh -c "while true ; do sleep 1 ; done"
   - name: ntp-alpine-latest
     image: alpine:latest
+    pre_build_image: yes
     command: sh -c "while true ; do sleep 1 ; done"
   - name: ntp-archlinux
     image: archlinux/base
+    pre_build_image: yes
   - name: ntp-centos-6
     image: centos:6
+    pre_build_image: yes
   - name: ntp-centos-latest
     image: centos:latest
+    pre_build_image: yes
   - name: ntp-debian-latest
     image: debian:latest
+    pre_build_image: yes
   - name: ntp-debian-stable
     image: debian:stable
+    pre_build_image: yes
   - name: ntp-debian-unstable
     image: debian:unstable
+    pre_build_image: yes
   - name: ntp-fedora-latest
     image: fedora:latest
+    pre_build_image: yes
   - name: ntp-fedora-rawhide
     image: fedora:rawhide
+    pre_build_image: yes
   - name: ntp-opensuse-leap
     image: opensuse:leap
+    pre_build_image: yes
   - name: ntp-ubuntu-latest
     image: ubuntu:latest
+    pre_build_image: yes
   - name: ntp-ubuntu-rolling
     image: ubuntu:rolling
+    pre_build_image: yes
   - name: ntp-ubuntu-devel
     image: ubuntu:devel
+    pre_build_image: yes
   - name: ntp-ubuntu-latest
     image: ubuntu:latest
+    pre_build_image: yes
 provisioner:
   name: ansible
+  playbooks:
+    prepare: ../resources/prepare.yml
+    converge: ../resources/playbook.yml
   lint:
     name: ansible-lint
 scenario:
