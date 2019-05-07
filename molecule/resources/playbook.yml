@@ -5,5 +5,5 @@
   gather_facts: yes
 
   roles:
-    - ansible-role-cron
+    - robertdebock.cron
     - ansible-role-ntp
