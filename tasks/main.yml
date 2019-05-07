@@ -79,6 +79,8 @@
   when:
     - ntp_timezone_supported
     - ansible_virtualization_type != "docker"
+  notify:
+    - restart cron
 
 - name: start and enable ntp
   service:

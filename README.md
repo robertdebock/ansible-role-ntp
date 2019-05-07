@@ -17,6 +17,7 @@ This example is taken from `molecule/default/playbook.yml`:
   gather_facts: yes
 
   roles:
+    - robertdebock.cron
     - robertdebock.ntp
 ```
 
@@ -77,6 +78,7 @@ The following roles can be installed to ensure all requirements are met, using `
 ```yaml
 ---
 - robertdebock.bootstrap
+- robeertdebock.cron
 
 ```
 
