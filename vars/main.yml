@@ -5,8 +5,12 @@ _ntp_packages:
     - ntp
   Alpine:
     - openntpd
+  RedHat-7:
+    - ntp
+  RedHat:
+    - chronyc
 
-ntp_packages: "{{ _ntp_packages[ansible_os_family] | default(_ntp_packages['default']) }}"
+ntp_packages: "{{ _ntp_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_packages[ansible_os_family] | default(_ntp_packages['default'])) }}"
 
 ntp_conflicting_packages:
   - chrony
@@ -21,8 +25,10 @@ _ntp_service:
   default: ntpd
   Debian: ntp
   Alpine: openntpd
+  RedHat-7: ntpd
+  RedHat: chronyd
 
-ntp_service: "{{ _ntp_service[ansible_os_family] | default(_ntp_service['default']) }}"
+ntp_service: "{{ _ntp_service[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_service[ansible_os_family] | default(_ntp_service['default'])) }}"
 
 _ntp_timezone_packages:
   default:
