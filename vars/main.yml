@@ -18,7 +18,7 @@ _ntp_configuration:
   RedHat-7: /etc/ntp.conf
   RedHat: /etc/chrony.conf
 
-ntp_configuration: "{{ _ntp_configuration[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_configuration[ansible_distribution] | default(_ntp_configuration[ansible_os_family] | default(_ntp_configuration['default']))) }}"
+ntp_configuration: "{{ _ntp_configuration[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_configuration[ansible_os_family] | default(_ntp_configuration['default'])) }}"
 
 _ntp_service:
   default: ntpd
