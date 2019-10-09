@@ -15,7 +15,6 @@ ntp_packages: "{{ _ntp_packages[ansible_os_family ~ '-' ~ ansible_distribution_m
 _ntp_configuration:
   default: /etc/ntp.conf
   Alpine: /etc/ntpd.conf
-  Fedora: /etc/ntp.conf
   RedHat-7: /etc/ntp.conf
   RedHat: /etc/chrony.conf
 
