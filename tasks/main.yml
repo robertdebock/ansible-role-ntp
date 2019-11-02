@@ -77,7 +77,6 @@
     name: "{{ ntp_timezone }}"
   when:
     - ntp_timezone_supported | bool
-    - ansible_virtualization_type != "docker"
   notify:
     - restart cron
 
@@ -86,5 +85,3 @@
     name: "{{ ntp_service }}"
     state: started
     enabled: yes
-  when:
-    - ansible_virtualization_type != "docker"
