@@ -165,9 +165,9 @@ Modules
 This role uses the following modules:
 ```yaml
 ---
-- lineinfile
 - package
 - service
+- template
 - timezone
 ```
 

@@ -12,13 +12,13 @@ _ntp_packages:
 
 ntp_packages: "{{ _ntp_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_packages[ansible_os_family] | default(_ntp_packages['default'])) }}"
 
-_ntp_configuration:
-  default: /etc/ntp.conf
-  Alpine: /etc/ntpd.conf
-  RedHat-7: /etc/ntp.conf
-  RedHat: /etc/chrony.conf
+_ntp_configuration_file:
+  default: ntp.conf
+  Alpine: ntpd.conf
+  RedHat-7: ntp.conf
+  RedHat: chrony.conf
 
-ntp_configuration: "{{ _ntp_configuration[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_configuration[ansible_os_family] | default(_ntp_configuration['default'])) }}"
+ntp_configuration_file: "{{ _ntp_configuration_file[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_configuration_file[ansible_os_family] | default(_ntp_configuration_file['default'])) }}"
 
 _ntp_service:
   default: ntpd

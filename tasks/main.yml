@@ -1,6 +1,6 @@
 ---
 # tasks file for ntp
-- name: install ntp
+- name: install ntp/chrony
   package:
     name: "{{ ntp_packages }}"
     state: present
@@ -8,61 +8,68 @@
   until: ntp_install_ntp is succeeded
   retries: 3
 
-- name: configure ntp_interfaces
-  lineinfile:
-    dest: "{{ ntp_configuration }}"
-    line: "interface listen {{ item.address }}"
-  with_items:
-    - "{{ ntp_interfaces }}"
-  loop_control:
-    label: "{{ item.address }}"
-  when:
-    - ntp_interfaces is defined
-    - not (ansible_os_family == "RedHat" and
-      ansible_distribution_major_version is version('8', '>='))
+- name: configure ntp/chrony
+  template:
+    src: "{{ ntp_configuration_file }}.j2"
+    dest: /etc/{{ ntp_configuration_file }}
   notify:
-    - restart ntp
+    - restart ntp/chrony
 
-- name: configure ntp_restrict
-  lineinfile:
-    dest: "{{ ntp_configuration }}"
-    line: "restrict {{ item.address }}"
-  with_items:
-    - "{{ ntp_restrict }}"
-  loop_control:
-    label: "{{ item.address }}"
-  when:
-    - ntp_restrict is defined
-    - not (ansible_os_family == "RedHat" and
-      ansible_distribution_major_version is version('8', '>='))
-  notify:
-    - restart ntp
-
-- name: configure ntp_pool
-  lineinfile:
-    dest: "{{ ntp_configuration }}"
-    line: "pool {{ item.name }}"
-  with_items:
-    - "{{ ntp_pool }}"
-  loop_control:
-    label: "{{ item.name }}"
-  when:
-    - ntp_pool is defined
-  notify:
-    - restart ntp
-
-- name: configure ntp_server
-  lineinfile:
-    dest: "{{ ntp_configuration }}"
-    line: "server {{ item.name }}"
-  with_items:
-    - "{{ ntp_servers }}"
-  loop_control:
-    label: "{{ item.name }}"
-  when:
-    - ntp_servers is defined
-  notify:
-    - restart ntp
+# - name: configure ntp_interfaces
+#   lineinfile:
+#     dest: "{{ ntp_configuration }}"
+#     line: "interface listen {{ item.address }}"
+#   with_items:
+#     - "{{ ntp_interfaces }}"
+#   loop_control:
+#     label: "{{ item.address }}"
+#   when:
+#     - ntp_interfaces is defined
+#     - not (ansible_os_family == "RedHat" and
+#       ansible_distribution_major_version is version('8', '>='))
+#   notify:
+#     - restart ntp
+#
+# - name: configure ntp_restrict
+#   lineinfile:
+#     dest: "{{ ntp_configuration }}"
+#     line: "restrict {{ item.address }}"
+#   with_items:
+#     - "{{ ntp_restrict }}"
+#   loop_control:
+#     label: "{{ item.address }}"
+#   when:
+#     - ntp_restrict is defined
+#     - not (ansible_os_family == "RedHat" and
+#       ansible_distribution_major_version is version('8', '>='))
+#   notify:
+#     - restart ntp
+#
+# - name: configure ntp_pool
+#   lineinfile:
+#     dest: "{{ ntp_configuration }}"
+#     line: "pool {{ item.name }}"
+#   with_items:
+#     - "{{ ntp_pool }}"
+#   loop_control:
+#     label: "{{ item.name }}"
+#   when:
+#     - ntp_pool is defined
+#   notify:
+#     - restart ntp
+#
+# - name: configure ntp_server
+#   lineinfile:
+#     dest: "{{ ntp_configuration }}"
+#     line: "server {{ item.name }}"
+#   with_items:
+#     - "{{ ntp_servers }}"
+#   loop_control:
+#     label: "{{ item.name }}"
+#   when:
+#     - ntp_servers is defined
+#   notify:
+#     - restart ntp
 
 - name: install timezone information
   package:
@@ -80,7 +87,7 @@
   notify:
     - restart cron
 
-- name: start and enable ntp
+- name: start and enable ntp/chrony
   service:
     name: "{{ ntp_service }}"
     state: started

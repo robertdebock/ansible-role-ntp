@@ -1,6 +1,6 @@
 ---
 # handlers file for ntp
-- name: restart ntp
+- name: restart ntp/chrony
   service:
     name: "{{ ntp_service }}"
     state: restarted
