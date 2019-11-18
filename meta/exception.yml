@@ -1,0 +1,4 @@
+---
+exceptions:
+  - variation: alpine
+    reason: "/lib/rc/sh/openrc-run.sh: line 100: can't create /sys/fs/cgroup/systemd/tasks: Read-only file system"
