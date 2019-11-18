@@ -110,7 +110,6 @@ This role has been tested on these [container images](https://hub.docker.com/):
 |centos|latest|no|
 |fedora|latest|no|
 |fedora|rawhide|yes|
-|opensuse|latest|no|
 |ubuntu|latest|no|
 
 This role has been tested on these Ansible versions:
@@ -127,6 +126,7 @@ Some variarations of the build matrix do not work. These are the variations and 
 | variation                 | reason                 |
 |---------------------------|------------------------|
 | alpine | /lib/rc/sh/openrc-run.sh: line 100: can't create /sys/fs/cgroup/systemd/tasks: Read-only file system |
+| opensuse | ConditionVirtualization=!container was not met |
 
 
 
