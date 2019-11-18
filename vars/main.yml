@@ -4,7 +4,7 @@ _ntp_packages:
   default:
     - ntp
   Alpine:
-    - openntpd
+    - anacron
   RedHat-7:
     - ntp
   RedHat:
