@@ -34,7 +34,6 @@ galaxy_info:
     - ntpd
     - ntpdate
     - centos
-    - debian
     - fedora
     - ubuntu
 
