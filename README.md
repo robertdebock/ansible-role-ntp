@@ -130,7 +130,6 @@ Some variarations of the build matrix do not work. These are the variations and 
 | opensuse | ConditionVirtualization=!container was not met |
 
 
-
 Testing
 -------
 
