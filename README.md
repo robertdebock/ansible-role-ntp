@@ -4,6 +4,8 @@ ntp
 <img src="https://docs.ansible.com/ansible-tower/3.2.4/html_ja/installandreference/_static/images/logo_invert.png" width="10%" height="10%" alt="Ansible logo" align="right"/>
 <a href="https://travis-ci.org/robertdebock/ansible-role-ntp"> <img src="https://travis-ci.org/robertdebock/ansible-role-ntp.svg?branch=master" alt="Build status"/></a> <img src="https://img.shields.io/ansible/role/d/23988"/> <img src="https://img.shields.io/ansible/quality/23988"/>
 
+<a href="https://github.com/robertdebock/ansible-role-ntp/actions"><img src="https://github.com/robertdebock/ansible-role-ntp/workflows/GitHub%20Action/badge.svg"/></a>
+
 Install and configure ntp on your system.
 
 Example Playbook
@@ -104,7 +106,6 @@ This role has been tested on these [container images](https://hub.docker.com/):
 |container|tags|
 |---------|----|
 |amazon|all|
-|archlinux|all|
 |debian|all|
 |el|7, 8|
 |fedora|all|
