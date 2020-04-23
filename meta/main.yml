@@ -13,7 +13,7 @@ galaxy_info:
         - all
     - name: Debian
       versions:
-        - all
+        - buster
     - name: EL
       versions:
         - 7

@@ -110,7 +110,7 @@ This role has been tested on these [container images](https://hub.docker.com/):
 |container|tags|
 |---------|----|
 |amazon|all|
-|debian|all|
+|debian|buster|
 |el|7, 8|
 |fedora|all|
 |ubuntu|bionic|
@@ -129,6 +129,7 @@ Some variarations of the build matrix do not work. These are the variations and 
 |---------------------------|------------------------|
 | alpine | /lib/rc/sh/openrc-run.sh: line 100: can't create /sys/fs/cgroup/systemd/tasks: Read-only file system |
 | opensuse | ConditionVirtualization=!container was not met |
+| debian:buster | Unable to restart service ntp: Job for ntp.service failed because the control process exited with error code. |
 
 
 ## Testing
