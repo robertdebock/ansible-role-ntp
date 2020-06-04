@@ -2,9 +2,9 @@
 
 Install and configure ntp on your system.
 
-|Travis|GitHub|Quality|Downloads|
-|------|------|-------|---------|
-|[![travis](https://travis-ci.com/robertdebock/ansible-role-ntp.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-ntp)|[![github](https://github.com/robertdebock/ansible-role-ntp/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-ntp/actions)|[![quality](https://img.shields.io/ansible/quality/23988)](https://galaxy.ansible.com/robertdebock/ntp)|[![downloads](https://img.shields.io/ansible/role/d/23988)](https://galaxy.ansible.com/robertdebock/ntp)|
+|Travis|GitHub|Quality|Downloads|Version|
+|------|------|-------|---------|-------|
+|[![travis](https://travis-ci.com/robertdebock/ansible-role-ntp.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-ntp)|[![github](https://github.com/robertdebock/ansible-role-ntp/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-ntp/actions)|[![quality](https://img.shields.io/ansible/quality/23988)](https://galaxy.ansible.com/robertdebock/ntp)|[![downloads](https://img.shields.io/ansible/role/d/23988)](https://galaxy.ansible.com/robertdebock/ntp)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-ntp.svg)](https://github.com/robertdebock/ansible-role-ntp/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
