@@ -37,8 +37,8 @@
 - name: test if item in ntp_pool is set correctly
   assert:
     that:
-      - item.address is defined
-      - item.address | length > 0
+      - item.name is defined
+      - item.name | length > 0
   loop: "{{ ntp_pool }}"
 
 - name: test if ntp_server is set correctly
