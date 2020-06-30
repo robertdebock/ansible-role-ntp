@@ -1,5 +1,8 @@
 ---
 # tasks file for ntp
+- name: include assert.yml
+  include_tasks: assert.yml
+
 - name: install {{ ntp_packages }}
   package:
     name: "{{ ntp_packages }}"

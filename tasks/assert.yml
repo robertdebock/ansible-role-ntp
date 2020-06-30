@@ -1,0 +1,65 @@
+---
+- name: test if ntp_interfaces is set correctly
+  assert:
+    that:
+      - ntp_interfaces is defined
+      - ntp_interfaces | length > 0
+      - ntp_interfaces is iterable
+
+- name: test if item in ntp_interfaces is set correctly
+  assert:
+    that:
+      - item.address is defined
+      - item.address | length > 0
+  loop: "{{ ntp_interfaces }}"
+
+- name: test if ntp_restrict is set correctly
+  assert:
+    that:
+      - ntp_restrict is defined
+      - ntp_restrict | length > 0
+      - ntp_restrict is iterable
+
+- name: test if item in ntp_restrict is set correctly
+  assert:
+    that:
+      - item.address is defined
+      - item.address | length > 0
+  loop: "{{ ntp_restrict }}"
+
+- name: test if ntp_pool is set correctly
+  assert:
+    that:
+      - ntp_pool is defined
+      - ntp_pool | length > 0
+      - ntp_pool is iterable
+
+- name: test if item in ntp_pool is set correctly
+  assert:
+    that:
+      - item.address is defined
+      - item.address | length > 0
+  loop: "{{ ntp_pool }}"
+
+- name: test if ntp_server is set correctly
+  assert:
+    that:
+      - ntp_server | length > 0
+      - ntp_server is iterable
+  when:
+    - ntp_server is defined
+
+- name: test if item in ntp_server is set correctly
+  assert:
+    that:
+      - item.name is defined
+      - item.name | length > 0
+  loop: "{{ ntp_server }}"
+  when:
+    - ntp_server is defined
+
+- name: test if ntp_timezone is set correctly
+  assert:
+    that:
+      - ntp_timezone is defined
+      - ntp_timezone | length > 0
