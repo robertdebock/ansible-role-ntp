@@ -13,6 +13,8 @@
       - item.address | length > 0
     quiet: yes
   loop: "{{ ntp_interfaces }}"
+  loop_control:
+    label: "{{ item.address }}"
 
 - name: test if ntp_restrict is set correctly
   assert:
@@ -28,6 +30,8 @@
       - item.address | length > 0
     quiet: yes
   loop: "{{ ntp_restrict }}"
+  loop_control:
+    label: "{{ item.address }}"
 
 - name: test if ntp_pool is set correctly
   assert:
@@ -43,6 +47,8 @@
       - item.name | length > 0
     quiet: yes
   loop: "{{ ntp_pool }}"
+  loop_control:
+    label: "{{ item.name }}"
 
 - name: test if ntp_server is set correctly
   assert:
@@ -58,7 +64,7 @@
       - item.name is defined
       - item.name | length > 0
     quiet: yes
-  loop: "{{ ntp_server }}"
+  name: "{{ ntp_server }}"
   when:
     - ntp_server is defined
 
