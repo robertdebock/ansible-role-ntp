@@ -7,9 +7,6 @@
   package:
     name: "{{ ntp_packages }}"
     state: present
-  register: ntp_install_ntp
-  until: ntp_install_ntp is succeeded
-  retries: 3
 
 - name: configure /etc/{{ ntp_configuration_file }}
   template:
@@ -22,9 +19,6 @@
   package:
     name: "{{ ntp_timezone_packages }}"
     state: present
-  register: ntp_install_timezone_information
-  until: ntp_install_timezone_information is succeeded
-  retries: 3
 
 - name: configure timezone
   timezone:
