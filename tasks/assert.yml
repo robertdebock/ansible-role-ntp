@@ -5,6 +5,7 @@
       - ntp_interfaces is defined
       - ntp_interfaces | length > 0
       - ntp_interfaces is iterable
+    quiet: yes
 
 - name: test if item in ntp_interfaces is set correctly
   assert:
@@ -22,6 +23,7 @@
       - ntp_restrict is defined
       - ntp_restrict | length > 0
       - ntp_restrict is iterable
+    quiet: yes
 
 - name: test if item in ntp_restrict is set correctly
   assert:
@@ -39,6 +41,7 @@
       - ntp_pool is defined
       - ntp_pool | length > 0
       - ntp_pool is iterable
+    quiet: yes
 
 - name: test if item in ntp_pool is set correctly
   assert:
@@ -55,6 +58,7 @@
     that:
       - ntp_server | length > 0
       - ntp_server is iterable
+    quiet: yes
   when:
     - ntp_server is defined
 
@@ -73,3 +77,4 @@
     that:
       - ntp_timezone is defined
       - ntp_timezone | length > 0
+    quiet: yes
