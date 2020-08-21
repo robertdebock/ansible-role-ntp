@@ -68,7 +68,6 @@
       - item.name is defined
       - item.name | length > 0
     quiet: yes
-  name: "{{ ntp_server }}"
   when:
     - ntp_server is defined
 
