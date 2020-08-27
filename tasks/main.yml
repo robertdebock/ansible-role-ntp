@@ -12,6 +12,7 @@
   template:
     src: "{{ ntp_configuration_file }}.j2"
     dest: /etc/{{ ntp_configuration_file }}
+    mode: "0644"
   notify:
     - restart ntp/chrony
 
