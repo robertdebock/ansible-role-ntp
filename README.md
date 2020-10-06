@@ -45,6 +45,8 @@ For verification `molecule/resources/verify.yml` runs after the role has been ap
     _ntp_check_packages:
       default:
         - ntpstat
+      Amazon-2018: []
+      RedHat-7: []
       RedHat-8: []
     ntp_check_packages: "{{ _ntp_check_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_check_packages['default']) }}"
     _ntp_check_command:
