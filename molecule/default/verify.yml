@@ -2,8 +2,46 @@
 - name: Verify
   hosts: all
   become: yes
-  gather_facts: no
+  gather_facts: yes
+
+  vars:
+    _ntp_check_packages:
+      default:
+        - ntpstat
+      RedHat-8: []
+    ntp_check_packages: "{{ _ntp_check_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_check_packages['default']) }}"
+    _ntp_check_command:
+      default: ntpstat
+      RedHat-8: chronyc tracking
+    ntp_check_command: "{{ _ntp_check_command[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_check_command['default']) }}"
+    _ntp_success_output:
+      default: "synchronised to NTP server"
+      RedHat-8: "Leap status     : Normal"
+    ntp_success_output: "{{ _ntp_success_output[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_success_output['default']) }}"
 
   tasks:
-    - name: check if connection still works
-      ping:
+    - name: install ntp check packages
+      package:
+        name: "{{ ntp_check_packages }}"
+        state: present
+      register: ntp_install_ntp_check_packages
+
+    - name: check if time is synchronised
+      command: "{{ ntp_check_command }}"
+      register: npt_check_time_synchronised
+      failed_when:
+        - ntp_success_output not in npt_check_time_synchronised.stdout
+      changed_when: no
+      until: npt_check_time_synchronised is succeeded
+      retries: 1
+
+    - name: show output
+      debug:
+        msg: "{{ npt_check_time_synchronised.stdout }}"
+
+    - name: uninstall ntp check packages
+      package:
+        name: "{{ ntp_check_packages }}"
+        state: absent
+      when:
+        - ntp_install_ntp_check_packages is changed
