@@ -72,7 +72,7 @@ For verification `molecule/resources/verify.yml` runs after the role has been ap
         - ntp_success_output not in npt_check_time_synchronised.stdout
       changed_when: no
       until: npt_check_time_synchronised is succeeded
-      retries: 1
+      retries: 6
 
     - name: show output
       debug:
