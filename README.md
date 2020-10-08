@@ -51,11 +51,13 @@ For verification `molecule/resources/verify.yml` runs after the role has been ap
     _ntp_check_command:
       default: ntpstat
       Amazon-2: chronyc tracking
+      Amazon-2018: chronyc tracking
       RedHat-8: chronyc tracking
     ntp_check_command: "{{ _ntp_check_command[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_ntp_check_command[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_check_command[ansible_os_family] | default(_ntp_check_command['default']))) }}"
     _ntp_success_output:
       default: "synchronised to NTP server"
       Amazon-2: "Leap status     : Normal"
+      Amazon-2018: "Leap status     : Normal"
       RedHat-8: "Leap status     : Normal"
     ntp_success_output: "{{ _ntp_success_output[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_ntp_success_output[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_success_output[ansible_os_family] | default(_ntp_success_output['default']))) }}"
 
@@ -74,10 +76,6 @@ For verification `molecule/resources/verify.yml` runs after the role has been ap
       changed_when: no
       until: npt_check_time_synchronised is succeeded
       retries: 6
-
-    - name: show output
-      debug:
-        msg: "{{ npt_check_time_synchronised }}"
 
     - name: uninstall ntp check packages
       package:
