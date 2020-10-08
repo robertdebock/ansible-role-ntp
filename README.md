@@ -47,17 +47,17 @@ For verification `molecule/resources/verify.yml` runs after the role has been ap
         - ntpstat
       Amazon-2: []
       RedHat: []
-    ntp_check_packages: "{{ _ntp_check_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | _ntp_check_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_check_packages[ansible_os_family] | default(_ntp_check_packages['default']))) }}"
+    ntp_check_packages: "{{ _ntp_check_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_ntp_check_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_check_packages[ansible_os_family] | default(_ntp_check_packages['default']))) }}"
     _ntp_check_command:
       default: ntpstat
       Amazon-2: chronyc tracking
       RedHat-8: chronyc tracking
-    ntp_check_command: "{{ _ntp_check_command[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | _ntp_check_command[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_check_command[ansible_os_family] | default(_ntp_check_command['default']))) }}"
+    ntp_check_command: "{{ _ntp_check_command[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_ntp_check_command[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_check_command[ansible_os_family] | default(_ntp_check_command['default']))) }}"
     _ntp_success_output:
       default: "synchronised to NTP server"
       Amazon-2: "Leap status     : Normal"
       RedHat-8: "Leap status     : Normal"
-    ntp_success_output: "{{ _ntp_success_output[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | _ntp_success_output[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_success_output[ansible_os_family] | default(_ntp_success_output['default'])) }}"
+    ntp_success_output: "{{ _ntp_success_output[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_ntp_success_output[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_success_output[ansible_os_family] | default(_ntp_success_output['default']))) }}"
 
   tasks:
     - name: install ntp check packages
@@ -150,7 +150,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|amazon|2018.03|
+|amazon|all|
 |el|7, 8|
 |debian|buster, bullseye|
 |fedora|31, 32|
