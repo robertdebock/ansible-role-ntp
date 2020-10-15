@@ -33,6 +33,5 @@ galaxy_info:
     - ntp
     - ntpd
     - ntpdate
-    - centos
 
 dependencies: []
