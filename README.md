@@ -21,7 +21,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
     - role: robertdebock.ntp
 ```
 
-The machine may need to be prepared using `molecule/resources/prepare.yml`:
+The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
 ```yaml
 ---
 - name: Prepare
@@ -31,60 +31,6 @@ The machine may need to be prepared using `molecule/resources/prepare.yml`:
 
   roles:
     - role: robertdebock.bootstrap
-```
-
-For verification `molecule/resources/verify.yml` runs after the role has been applied.
-```yaml
----
-- name: Verify
-  hosts: all
-  become: yes
-  gather_facts: yes
-
-  vars:
-    _ntp_check_packages:
-      default:
-        - ntpstat
-      Amazon-2: []
-      RedHat: []
-    ntp_check_packages: "{{ _ntp_check_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_ntp_check_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_check_packages[ansible_os_family] | default(_ntp_check_packages['default']))) }}"
-    _ntp_check_command:
-      default: ntpstat
-      Amazon-2: chronyc tracking
-      Amazon-2018: chronyc tracking
-      RedHat-8: chronyc tracking
-      Fedora: chronyc tracking
-    ntp_check_command: "{{ _ntp_check_command[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_ntp_check_command[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_check_command[ansible_distribution] | default(_ntp_check_command['default']))) }}"
-    _ntp_success_output:
-      default: "synchronised to NTP server"
-      Amazon-2: "Leap status     : Normal"
-      Amazon-2018: "Leap status     : Normal"
-      RedHat-8: "Leap status     : Normal"
-      Fedora: "Leap status     : Normal"
-    ntp_success_output: "{{ _ntp_success_output[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_ntp_success_output[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_success_output[ansible_distribution] | default(_ntp_success_output['default']))) }}"
-
-  tasks:
-    - name: install ntp check packages
-      package:
-        name: "{{ ntp_check_packages }}"
-        state: present
-      register: ntp_install_ntp_check_packages
-
-    - name: check if time is synchronised
-      command: "{{ ntp_check_command }}"
-      register: npt_check_time_synchronised
-      failed_when:
-        - ntp_success_output not in npt_check_time_synchronised.stdout
-      changed_when: no
-      until: npt_check_time_synchronised is succeeded
-      retries: 6
-
-    - name: uninstall ntp check packages
-      package:
-        name: "{{ ntp_check_packages }}"
-        state: absent
-      when:
-        - ntp_install_ntp_check_packages is changed
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -128,14 +74,12 @@ ntp_timezone: Europe/Amsterdam
 - Access to a repository containing packages, likely on the internet.
 - A recent version of Ansible. (Tests run on the current, previous and next release of Ansible.)
 
-The following roles can be installed to ensure all requirements are met, using `ansible-galaxy install -r requirements.yml`:
+## [Status of requirements](#status-of-requirements)
 
-```yaml
----
-- robertdebock.bootstrap
-- robertdebock.cron
-
-```
+| Requirement | Travis | GitHub |
+|-------------|--------|--------|
+| [robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap) | [![Build Status Travis](https://travis-ci.com/robertdebock/ansible-role-bootstrap.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-bootstrap) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions) |
+| [robertdebock.cron](https://galaxy.ansible.com/robertdebock/cron) | [![Build Status Travis](https://travis-ci.com/robertdebock/ansible-role-cron.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-cron) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-cron/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-cron/actions) |
 
 ## [Context](#context)
 
