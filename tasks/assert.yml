@@ -3,7 +3,6 @@
   assert:
     that:
       - ntp_interfaces is defined
-      - ntp_interfaces | length > 0
       - ntp_interfaces is iterable
     quiet: yes
 
@@ -11,7 +10,6 @@
   assert:
     that:
       - item.address is defined
-      - item.address | length > 0
     quiet: yes
   loop: "{{ ntp_interfaces }}"
   loop_control:
@@ -21,7 +19,6 @@
   assert:
     that:
       - ntp_restrict is defined
-      - ntp_restrict | length > 0
       - ntp_restrict is iterable
     quiet: yes
 
@@ -29,7 +26,6 @@
   assert:
     that:
       - item.address is defined
-      - item.address | length > 0
     quiet: yes
   loop: "{{ ntp_restrict }}"
   loop_control:
@@ -39,7 +35,6 @@
   assert:
     that:
       - ntp_pool is defined
-      - ntp_pool | length > 0
       - ntp_pool is iterable
     quiet: yes
 
@@ -47,7 +42,6 @@
   assert:
     that:
       - item.name is defined
-      - item.name | length > 0
     quiet: yes
   loop: "{{ ntp_pool }}"
   loop_control:
@@ -56,7 +50,6 @@
 - name: test if ntp_server is set correctly
   assert:
     that:
-      - ntp_server | length > 0
       - ntp_server is iterable
     quiet: yes
   when:
@@ -66,7 +59,6 @@
   assert:
     that:
       - item.name is defined
-      - item.name | length > 0
     quiet: yes
   when:
     - ntp_server is defined
@@ -75,5 +67,4 @@
   assert:
     that:
       - ntp_timezone is defined
-      - ntp_timezone | length > 0
     quiet: yes
