@@ -1,4 +1,5 @@
 ---
+
 - name: test if ntp_interfaces is set correctly
   assert:
     that:
