@@ -11,6 +11,7 @@
   assert:
     that:
       - item.address is defined
+      - item.address is string
     quiet: yes
   loop: "{{ ntp_interfaces }}"
   loop_control:
@@ -27,6 +28,7 @@
   assert:
     that:
       - item.address is defined
+      - item.address is string
     quiet: yes
   loop: "{{ ntp_restrict }}"
   loop_control:
@@ -43,6 +45,7 @@
   assert:
     that:
       - item.name is defined
+      - item.name is string
     quiet: yes
   loop: "{{ ntp_pool }}"
   loop_control:
@@ -60,6 +63,7 @@
   assert:
     that:
       - item.name is defined
+      - item.name is string
     quiet: yes
   when:
     - ntp_server is defined
@@ -68,4 +72,5 @@
   assert:
     that:
       - ntp_timezone is defined
+      - ntp_timezone is string
     quiet: yes
