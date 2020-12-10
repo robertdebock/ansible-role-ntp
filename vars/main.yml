@@ -41,6 +41,7 @@ ntp_timezone_packages: "{{ _ntp_timezone_packages[ansible_os_family] | default(_
 _ntp_timezone_supported:
   default: no
   Debian: yes
+  Ubuntu: yes
   CentOS: yes
 
 ntp_timezone_supported: "{{ _ntp_timezone_supported[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_ntp_timezone_supported[ansible_distribution] | default(_ntp_timezone_supported['default'])) }}"
