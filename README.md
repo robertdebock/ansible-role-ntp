@@ -2,9 +2,9 @@
 
 Install and configure ntp on your system.
 
-|Travis|GitHub|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![travis](https://travis-ci.com/robertdebock/ansible-role-ntp.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-ntp)|[![github](https://github.com/robertdebock/ansible-role-ntp/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-ntp/actions)|[![quality](https://img.shields.io/ansible/quality/23988)](https://galaxy.ansible.com/robertdebock/ntp)|[![downloads](https://img.shields.io/ansible/role/d/23988)](https://galaxy.ansible.com/robertdebock/ntp)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-ntp.svg)](https://github.com/robertdebock/ansible-role-ntp/releases/)|
+|Travis|GitHub|GitLab|Quality|Downloads|Version|
+|------|------|------|-------|---------|-------|
+|[![travis](https://travis-ci.com/robertdebock/ansible-role-ntp.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-ntp)|[![github](https://github.com/robertdebock/ansible-role-ntp/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-ntp/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-ntp/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-ntp)|[![quality](https://img.shields.io/ansible/quality/23988)](https://galaxy.ansible.com/robertdebock/ntp)|[![downloads](https://img.shields.io/ansible/role/d/23988)](https://galaxy.ansible.com/robertdebock/ntp)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-ntp.svg)](https://github.com/robertdebock/ansible-role-ntp/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -73,6 +73,7 @@ ntp_timezone: Europe/Amsterdam
 
 - Access to a repository containing packages, likely on the internet.
 - A recent version of Ansible. (Tests run on the current, previous and next release of Ansible.)
+- Jinja 2.11.2 or above.
 
 ## [Status of requirements](#status-of-requirements)
 
