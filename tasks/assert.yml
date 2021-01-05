@@ -17,23 +17,6 @@
   loop_control:
     label: "{{ item.address }}"
 
-- name: test if ntp_restrict is set correctly
-  assert:
-    that:
-      - ntp_restrict is defined
-      - ntp_restrict is iterable
-    quiet: yes
-
-- name: test if item in ntp_restrict is set correctly
-  assert:
-    that:
-      - item.address is defined
-      - item.address is string
-    quiet: yes
-  loop: "{{ ntp_restrict }}"
-  loop_control:
-    label: "{{ item.address }}"
-
 - name: test if ntp_pool is set correctly
   assert:
     that:

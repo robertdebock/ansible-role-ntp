@@ -5,12 +5,6 @@
 ntp_interfaces:
   - address: 127.0.0.1
 
-# A list of IP addresses and options to allow NTP traffic from.
-ntp_restrict:
-  - address: 127.0.0.1
-  - address: ::1
-#  - address: 192.168.1.1 nomodify notrap nopeer noquery
-
 # A list of NTP pools and their options.
 ntp_pool:
   - name: 0.pool.ntp.org iburst
