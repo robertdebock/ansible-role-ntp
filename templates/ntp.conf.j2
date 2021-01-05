@@ -17,6 +17,10 @@ restrict ::1
 
 restrict source notrap nomodify noquery
 
+{% for interface in ntp_interfaces %}
+interface listen {{ interface.address }}
+{% endfor %}
+
 {% for ntp_server in ntp_pool %}
 pool {{ ntp_server.name }}
 {% endfor %}

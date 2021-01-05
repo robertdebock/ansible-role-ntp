@@ -7,6 +7,9 @@
 # servers pool.ntp.org
 sensor *
 constraints from "https://www.google.com"
+{% for interface in ntp_interfaces %}
+interface listen {{ interface.address }}
+{% endfor %}
 
 {% for ntp_server in ntp_pool %}
 pool {{ ntp_server.name }}
