@@ -1,14 +1,14 @@
 ---
 
 - name: test if ntp_interfaces is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - ntp_interfaces is defined
       - ntp_interfaces is iterable
     quiet: yes
 
 - name: test if item in ntp_interfaces is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - item.address is defined
       - item.address is string
@@ -18,14 +18,14 @@
     label: "{{ item.address }}"
 
 - name: test if ntp_pool is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - ntp_pool is defined
       - ntp_pool is iterable
     quiet: yes
 
 - name: test if item in ntp_pool is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - item.name is defined
       - item.name is string
@@ -35,7 +35,7 @@
     label: "{{ item.name }}"
 
 - name: test if ntp_server is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - ntp_server is iterable
     quiet: yes
@@ -43,7 +43,7 @@
     - ntp_server is defined
 
 - name: test if item in ntp_server is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - item.name is defined
       - item.name is string
@@ -52,7 +52,7 @@
     - ntp_server is defined
 
 - name: test if ntp_timezone is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - ntp_timezone is defined
       - ntp_timezone is string

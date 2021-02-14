@@ -2,7 +2,7 @@
 # handlers file for ntp
 
 - name: restart ntp/chrony
-  service:
+  ansible.builtin.service:
     name: "{{ ntp_service }}"
     state: restarted
   when:
