@@ -7,12 +7,12 @@
   delegate_to: localhost
 
 - name: install ntp packages
-  package:
+  ansible.builtin.package:
     name: "{{ ntp_packages }}"
     state: present
 
 - name: configure /etc/{{ ntp_configuration_file }}
-  template:
+  ansible.builtin.template:
     src: "{{ ntp_configuration_file }}.j2"
     dest: /etc/{{ ntp_configuration_file }}
     mode: "0644"
@@ -20,12 +20,12 @@
     - restart ntp/chrony
 
 - name: install timezone information
-  package:
+  ansible.builtin.package:
     name: "{{ ntp_timezone_packages }}"
     state: present
 
 - name: configure timezone
-  timezone:
+  community.general.timezone:
     name: "{{ ntp_timezone }}"
   when:
     - ntp_timezone_supported | bool
@@ -33,7 +33,7 @@
     - restart cron
 
 - name: start and enable {{ ntp_service }}
-  service:
+  ansible.builtin.service:
     name: "{{ ntp_service }}"
     state: started
     enabled: yes
