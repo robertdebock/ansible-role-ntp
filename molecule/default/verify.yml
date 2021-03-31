@@ -28,7 +28,7 @@
 
   tasks:
     - name: install ntp check packages
-      package:
+      ansible.builtin.package:
         name: "{{ ntp_check_packages }}"
         state: present
       register: ntp_install_ntp_check_packages
@@ -44,7 +44,7 @@
       retries: 6
 
     - name: uninstall ntp check packages
-      package:
+      ansible.builtin.package:
         name: "{{ ntp_check_packages }}"
         state: absent
       when:
