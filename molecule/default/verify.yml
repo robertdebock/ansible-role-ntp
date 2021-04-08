@@ -41,7 +41,7 @@
       changed_when: no
       until:
         - npt_check_time_synchronised is succeeded
-      retries: 6
+      retries: 16
 
     - name: uninstall ntp check packages
       ansible.builtin.package:
