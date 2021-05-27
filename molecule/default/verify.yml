@@ -34,7 +34,8 @@
       register: ntp_install_ntp_check_packages
 
     - name: check if time is synchronised
-      command: "{{ ntp_check_command }}"
+      ansible.builtin.command:
+        cmd: "{{ ntp_check_command }}"
       register: npt_check_time_synchronised
       failed_when:
         - ntp_success_output not in npt_check_time_synchronised.stdout
