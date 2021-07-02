@@ -8,8 +8,9 @@ _ntp_packages:
     - anacron
   RedHat-7:
     - ntp
-  RedHat:
+  RedHat: &RHEL
     - chrony
+  Rocky: *RHEL
 
 ntp_packages: "{{ _ntp_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_packages[ansible_os_family] | default(_ntp_packages['default'])) }}"
 
@@ -17,7 +18,8 @@ _ntp_configuration_file:
   default: ntp.conf
   Alpine: ntpd.conf
   RedHat-7: ntp.conf
-  RedHat: chrony.conf
+  RedHat: &RHEL chrony.conf
+  Rocky: *RHEL
 
 ntp_configuration_file: "{{ _ntp_configuration_file[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_configuration_file[ansible_os_family] | default(_ntp_configuration_file['default'])) }}"
 
@@ -26,7 +28,8 @@ _ntp_service:
   Debian: ntp
   Alpine: openntpd
   RedHat-7: ntpd
-  RedHat: chronyd
+  RedHat: &RHEL chronyd
+  Rocky: *RHEL
 
 ntp_service: "{{ _ntp_service[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_service[ansible_os_family] | default(_ntp_service['default'])) }}"
 
