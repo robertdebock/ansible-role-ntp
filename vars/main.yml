@@ -47,4 +47,4 @@ _ntp_timezone_supported:
   RedHat: &redhat_timezone_supported yes
   Rocky: *redhat_timezone_supported
 
-ntp_timezone_supported: "{{ _ntp_timezone_supported[ansible_os_family] | default(_ntp_timezone_supported['default'])) }}"
+ntp_timezone_supported: "{{ _ntp_timezone_supported[ansible_os_family] | default(_ntp_timezone_supported['default']) }}"
