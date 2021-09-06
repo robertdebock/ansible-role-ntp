@@ -4,6 +4,10 @@
   become: yes
   gather_facts: yes
 
+  vars_files:
+    - ../../vars/main.yml
+    - ../../defaults/main.yml
+
   vars:
     _ntp_check_packages:
       default:
@@ -46,6 +50,8 @@
       until:
         - npt_check_time_synchronised is succeeded
       retries: 16
+      when:
+        - ntp_state == "started"
 
     - name: uninstall ntp check packages
       ansible.builtin.package:
