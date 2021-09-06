@@ -7,3 +7,4 @@
   roles:
     - role: robertdebock.cron
     - role: ansible-role-ntp
+      ntp_state: stopped
