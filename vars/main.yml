@@ -6,6 +6,8 @@ _ntp_packages:
     - ntp
   Alpine:
     - anacron
+  Debian-n/a:
+    - ntpsec
   RedHat-7:
     - ntp
   RedHat:
