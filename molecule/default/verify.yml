@@ -31,13 +31,13 @@
     ntp_state: stopped
 
   tasks:
-    - name: install ntp check packages
+    - name: Install ntp check packages
       ansible.builtin.package:
         name: "{{ ntp_check_packages }}"
         state: present
       register: ntp_install_ntp_check_packages
 
-    - name: check if time is synchronised
+    - name: Check if time is synchronised
       ansible.builtin.command:
         cmd: "{{ ntp_check_command }}"
       register: npt_check_time_synchronised
@@ -50,7 +50,7 @@
       when:
         - ntp_state == "started"
 
-    - name: uninstall ntp check packages
+    - name: Uninstall ntp check packages
       ansible.builtin.package:
         name: "{{ ntp_check_packages }}"
         state: absent
