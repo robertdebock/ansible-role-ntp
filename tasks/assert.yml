@@ -26,6 +26,7 @@
     that:
       - item.address is defined
       - item.address is string
+      - item.address is not none
     quiet: yes
   loop: "{{ ntp_interfaces }}"
   loop_control:
@@ -43,6 +44,7 @@
     that:
       - item.name is defined
       - item.name is string
+      - item.name is not none
     quiet: yes
   loop: "{{ ntp_pool }}"
   loop_control:
@@ -61,6 +63,7 @@
     that:
       - item.name is defined
       - item.name is string
+      - item.name is not none
     quiet: yes
   when:
     - ntp_server is defined
@@ -70,4 +73,5 @@
     that:
       - ntp_timezone is defined
       - ntp_timezone is string
+      - ntp_timezone is not none
     quiet: yes
