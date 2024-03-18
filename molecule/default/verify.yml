@@ -1,8 +1,8 @@
 ---
 - name: Verify
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   vars:
     _ntp_check_packages:
@@ -43,7 +43,7 @@
       register: npt_check_time_synchronised
       failed_when:
         - ntp_success_output not in npt_check_time_synchronised.stdout
-      changed_when: no
+      changed_when: false
       until:
         - npt_check_time_synchronised is succeeded
       retries: 16
