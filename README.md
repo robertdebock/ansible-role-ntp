@@ -19,7 +19,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.cron
-    - role: ansible-role-ntp
+    - role: robertdebock.ntp
       ntp_state: stopped
 ```
 
