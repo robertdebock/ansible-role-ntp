@@ -6,6 +6,8 @@ _ntp_packages:
     - ntp
   Alpine:
     - anacron
+  Debian-13:
+    - ntpsec
   Debian-n/a:
     - ntpsec
   RedHat-7:
@@ -24,6 +26,20 @@ ntp_conflicting_packages: "{{ _ntp_conflicting_packages[ansible_facts['os_family
 
 ntp_packages: "{{ _ntp_packages[ansible_facts['os_family'] ~ '-' ~ ansible_facts['distribution_major_version']] | default(_ntp_packages[ansible_facts['os_family']] | default(_ntp_packages['default'] )) }}"
 
+# The directory the configuration file is placed in.
+_ntp_configuration_directory:
+  default: /etc
+  Debian-13: /etc/ntpsec
+
+ntp_configuration_directory: "{{ _ntp_configuration_directory[ansible_facts['os_family'] ~ '-' ~ ansible_facts['distribution_major_version']] | default(_ntp_configuration_directory['default']) }}"
+
+# The file ntpd uses to store the clock drift.
+_ntp_drift_file:
+  default: /var/lib/ntp/ntp.drift
+  Debian-13: /var/lib/ntpsec/ntp.drift
+
+ntp_drift_file: "{{ _ntp_drift_file[ansible_facts['os_family'] ~ '-' ~ ansible_facts['distribution_major_version']] | default(_ntp_drift_file['default']) }}"
+
 _ntp_configuration_file:
   default: ntp.conf
   Alpine: ntpd.conf
@@ -35,6 +51,7 @@ ntp_configuration_file: "{{ _ntp_configuration_file[ansible_facts['os_family'] ~
 _ntp_service:
   default: ntpd
   Debian: ntp
+  Debian-13: ntpsec
   Alpine: openntpd
   RedHat-7: ntpd
   RedHat: chronyd

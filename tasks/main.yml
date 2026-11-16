@@ -19,10 +19,10 @@
     name: "{{ ntp_packages }}"
     state: present
 
-- name: Configure /etc/{{ ntp_configuration_file }}
+- name: Configure the NTP configuration file
   ansible.builtin.template:
     src: "{{ ntp_configuration_file }}.j2"
-    dest: /etc/{{ ntp_configuration_file }}
+    dest: "{{ ntp_configuration_directory }}/{{ ntp_configuration_file }}"
     mode: "0644"
   notify:
     - Restart ntp
