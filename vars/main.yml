@@ -14,6 +14,14 @@ _ntp_packages:
     - chrony
     - util-linux
 
+# Packages that conflict with the NTP daemon, and need to be removed first.
+_ntp_conflicting_packages:
+  default: []
+  Debian:
+    - systemd-timesyncd
+
+ntp_conflicting_packages: "{{ _ntp_conflicting_packages[ansible_facts['os_family']] | default(_ntp_conflicting_packages['default']) }}"
+
 ntp_packages: "{{ _ntp_packages[ansible_facts['os_family'] ~ '-' ~ ansible_facts['distribution_major_version']] | default(_ntp_packages[ansible_facts['os_family']] | default(_ntp_packages['default'] )) }}"
 
 _ntp_configuration_file:

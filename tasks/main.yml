@@ -7,6 +7,13 @@
   run_once: true
   delegate_to: localhost
 
+- name: Remove conflicting packages
+  ansible.builtin.package:
+    name: "{{ ntp_conflicting_packages }}"
+    state: absent
+  when:
+    - ntp_conflicting_packages | length > 0
+
 - name: Install packages
   ansible.builtin.package:
     name: "{{ ntp_packages }}"
