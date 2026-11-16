@@ -1,6 +1,6 @@
 {{ ansible_managed | comment }}
 
-driftfile /var/lib/ntp/ntp.drift
+driftfile {{ ntp_drift_file }}
 
 leapfile /usr/share/zoneinfo/leap-seconds.list
 
