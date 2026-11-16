@@ -19,7 +19,7 @@
     name: "{{ ntp_packages }}"
     state: present
 
-- name: Configure {{ ntp_configuration_directory }}/{{ ntp_configuration_file }}
+- name: Configure the NTP configuration file
   ansible.builtin.template:
     src: "{{ ntp_configuration_file }}.j2"
     dest: "{{ ntp_configuration_directory }}/{{ ntp_configuration_file }}"
